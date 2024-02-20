@@ -25,7 +25,7 @@ describe('Install Fastlane', () => {
 
   it('Installs latest Fastlane version', async () => {
     await installFastlane('latest');
-    expect(execSpy).toHaveBeenNthCalledWith(2, 'gem', [
+    expect(execSpy).toHaveBeenCalledWith('gem', [
       'install',
       'fastlane',
       '--no-document',
@@ -35,7 +35,7 @@ describe('Install Fastlane', () => {
   it('Installs specific Fastlane version', async () => {
     const fastlaneVersion = '1.2.3';
     await installFastlane(fastlaneVersion);
-    expect(execSpy).toHaveBeenNthCalledWith(2, 'gem', [
+    expect(execSpy).toHaveBeenCalledWith('gem', [
       'install',
       'fastlane',
       '-v',
@@ -45,6 +45,7 @@ describe('Install Fastlane', () => {
   });
 
   it('Uninstalls installed Fastlane versions', async () => {
+    getInstalledFastlaneVersionSpy.mockReturnValue('1.2.3');
     await installFastlane('latest');
     expect(execSpy).toHaveBeenNthCalledWith(1, 'gem', [
       'uninstall',
