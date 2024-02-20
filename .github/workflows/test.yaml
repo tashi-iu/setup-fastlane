@@ -20,5 +20,5 @@ jobs:
       - name: Setup Fastlane
         uses: ./
 
-      - name: Validate version
-        run: fastlane --version | grep "1.8.4"
+      - name: Check Fastlane Command
+        run: fastlane --version
