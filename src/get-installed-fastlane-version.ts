@@ -9,6 +9,7 @@ export default async function getInstalledFastlaneVersion() {
         version += data.toString();
       },
     },
+    ignoreReturnCode: true,
   });
 
   if (exitCode !== 0 || !version) return null;
