@@ -1,13 +1,15 @@
 {
   "name": "setup-fastlane",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "main": "lib/main.js",
   "description": "A GitHub Action to set up Fastlane",
   "scripts": {
-    "build": "tsc && ncc build",
+    "build": "npm run transpile && ncc build",
+    "transpile": "tsc --project tsconfig.build.json",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "pre-commit": "npm run build && npm run test && npm run lint"
   },
   "repository": {
     "type": "git",
