@@ -10,13 +10,15 @@ export default async function installFastlane(version: string) {
     );
   }
 
-  await exec('gem', [
-    'uninstall',
-    'fastlane',
-    '--all',
-    '--executables',
-    '--ignore-dependencies',
-  ]);
+  if (installedVersion) {
+    await exec('gem', [
+      'uninstall',
+      'fastlane',
+      '--all',
+      '--executables',
+      '--ignore-dependencies',
+    ]);
+  }
 
   const versionArgs = version === 'latest' ? [] : ['-v', version];
   await exec('gem', ['install', 'fastlane', ...versionArgs, '--no-document']);

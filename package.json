@@ -1,6 +1,6 @@
 {
   "name": "setup-fastlane",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "main": "lib/main.js",
   "description": "A GitHub Action to set up Fastlane",

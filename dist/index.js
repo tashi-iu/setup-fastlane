@@ -9,18 +9,23 @@
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const exec_1 = __nccwpck_require__(1514);
 async function getInstalledFastlaneVersion() {
-    let version = '';
-    const exitCode = await (0, exec_1.exec)('fastlane', ['--version'], {
-        listeners: {
-            stdout: (data) => {
-                version += data.toString();
+    try {
+        let version = '';
+        const exitCode = await (0, exec_1.exec)('fastlane', ['--version'], {
+            listeners: {
+                stdout: (data) => {
+                    version += data.toString();
+                },
             },
-        },
-        ignoreReturnCode: true,
-    });
-    if (exitCode !== 0 || !version)
+            ignoreReturnCode: true,
+        });
+        if (exitCode !== 0 || !version)
+            return null;
+        return version.trim();
+    }
+    catch {
         return null;
-    return version.trim();
+    }
 }
 exports["default"] = getInstalledFastlaneVersion;
 
@@ -44,13 +49,15 @@ async function installFastlane(version) {
     if (installedVersion === version) {
         return (0, core_1.info)(`Specified Fastlane version ${version} is already installed. Skipping install.`);
     }
-    await (0, exec_1.exec)('gem', [
-        'uninstall',
-        'fastlane',
-        '--all',
-        '--executables',
-        '--ignore-dependencies',
-    ]);
+    if (installedVersion) {
+        await (0, exec_1.exec)('gem', [
+            'uninstall',
+            'fastlane',
+            '--all',
+            '--executables',
+            '--ignore-dependencies',
+        ]);
+    }
     const versionArgs = version === 'latest' ? [] : ['-v', version];
     await (0, exec_1.exec)('gem', ['install', 'fastlane', ...versionArgs, '--no-document']);
     (0, core_1.info)(`Fastlane ${version} has been installed successfully`);
