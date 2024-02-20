@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  setup_cocoapods:
+  setup_fastlane:
     name: Install Fastlane
     runs-on: ubuntu-latest
     steps:
@@ -17,7 +17,7 @@ jobs:
         with:
           ruby-version: "3.3"
 
-      - name: Setup Cocoapods
+      - name: Setup Fastlane
         uses: ./
 
       - name: Validate version
