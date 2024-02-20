@@ -1,6 +1,7 @@
 # Setup Fastlane
 
 [![Build](https://github.com/tashi-iu/setup-fastlane/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/tashi-iu/setup-fastlane/actions/workflows/build.yaml)
+[![Test action `setup-fastlane`](https://github.com/tashi-iu/setup-fastlane/actions/workflows/test.yaml/badge.svg)](https://github.com/tashi-iu/setup-fastlane/actions/workflows/test.yaml)
 
 Action to setup Fastlane for GitHub Actions runners.
 
