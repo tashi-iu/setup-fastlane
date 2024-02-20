@@ -1,6 +1,8 @@
 # Setup Fastlane
 
-Setup Fastlane for GitHub Actions runners.
+[![versions](https://github.com/tashi-iu/setup-fastlane/actions/workflows/build.yml/badge.svg)](https://github.com/tashi-iu/setup-fastlane/actions/workflows/build.yml)
+
+Action to setup Fastlane for GitHub Actions runners.
 
 ## Usage
 

@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import installFastlane from './install-fastlane';
 
-(async (): Promise<void> => {
+export const run = async (): Promise<void> => {
   try {
     if (process.platform !== 'darwin' && process.platform !== 'linux') {
       throw new Error(
@@ -19,4 +19,6 @@ import installFastlane from './install-fastlane';
     }
     core.setFailed('An error occurred while trying to install Fastlane.');
   }
-})();
+};
+
+run();
