@@ -1,0 +1,13 @@
+name: "Setup Fastlane"
+author: "Tashi Tobgay Dakpa"
+description: "A GitHub Action to set up Fastlane"
+branding:
+  icon: "code"
+  color: "white"
+runs:
+  using: "node20"
+  main: "dist/index.js"
+inputs:
+  version:
+    description: "Version of Fastlane to set up. Default: 'latest'"
+    required: false

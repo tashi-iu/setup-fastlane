@@ -1,0 +1,33 @@
+{
+  "name": "setup-fastlane",
+  "version": "1.0.0",
+  "private": true,
+  "main": "lib/main.js",
+  "description": "A GitHub Action to set up Fastlane",
+  "scripts": {
+    "build": "tsc && ncc build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tashi-iu/setup-cocoapods.git"
+  },
+  "keywords": [
+    "setup",
+    "fastlane",
+    "actions"
+  ],
+  "author": "Tashi Tobgay Dakpa",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/exec": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vercel/ncc": "^0.38.1",
+    "eslint": "8.56.0",
+    "typescript": "^5.3.3"
+  }
+}
