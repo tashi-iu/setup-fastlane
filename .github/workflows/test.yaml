@@ -1,0 +1,24 @@
+name: Test action `setup-fastlane`
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  setup_cocoapods:
+    name: Install Fastlane
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Setup Cocoapods
+        uses: ./
+
+      - name: Validate version
+        run: fastlane --version | grep "1.8.4"
