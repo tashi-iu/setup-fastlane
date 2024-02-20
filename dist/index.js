@@ -1,14 +1,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 8700:
+/***/ 7714:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const exec_1 = __nccwpck_require__(1514);
-const core_1 = __nccwpck_require__(2186);
 async function getInstalledFastlaneVersion() {
     let version = '';
     const exitCode = await (0, exec_1.exec)('fastlane', ['--version'], {
@@ -17,13 +16,31 @@ async function getInstalledFastlaneVersion() {
                 version += data.toString();
             },
         },
+        ignoreReturnCode: true,
     });
     if (exitCode !== 0 || !version)
         return null;
     return version.trim();
 }
+exports["default"] = getInstalledFastlaneVersion;
+
+
+/***/ }),
+
+/***/ 8700:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const exec_1 = __nccwpck_require__(1514);
+const core_1 = __nccwpck_require__(2186);
+const get_installed_fastlane_version_1 = __importDefault(__nccwpck_require__(7714));
 async function installFastlane(version) {
-    const installedVersion = await getInstalledFastlaneVersion();
+    const installedVersion = await (0, get_installed_fastlane_version_1.default)();
     if (installedVersion === version) {
         return (0, core_1.info)(`Specified Fastlane version ${version} is already installed. Skipping install.`);
     }
@@ -35,7 +52,7 @@ async function installFastlane(version) {
         '--ignore-dependencies',
     ]);
     const versionArgs = version === 'latest' ? [] : ['-v', version];
-    await (0, exec_1.exec)('gem', ['install', 'cocoapods', ...versionArgs, '--no-document']);
+    await (0, exec_1.exec)('gem', ['install', 'fastlane', ...versionArgs, '--no-document']);
     (0, core_1.info)(`Fastlane ${version} has been installed successfully`);
 }
 exports["default"] = installFastlane;
@@ -75,9 +92,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.run = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const install_fastlane_1 = __importDefault(__nccwpck_require__(8700));
-(async () => {
+const run = async () => {
     try {
         if (process.platform !== 'darwin' && process.platform !== 'linux') {
             throw new Error(`This Action is not compatible with '${process.platform}'. Supported platforms are Linux and MacOS.`);
@@ -92,7 +110,9 @@ const install_fastlane_1 = __importDefault(__nccwpck_require__(8700));
         }
         core.setFailed('An error occurred while trying to install Fastlane.');
     }
-})();
+};
+exports.run = run;
+(0, exports.run)();
 
 
 /***/ }),
