@@ -9,6 +9,10 @@ Action to setup Fastlane for GitHub Actions runners.
 ### Basic Configuration
 
 ```yaml
+- uses: ruby/setup-ruby@v1
+  with:
+    ruby-version: '3.3'
+
 - uses: tashi-iu/setup-fastlane@v1
   with:
     # Optional. Default: 'latest'
